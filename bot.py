@@ -133,46 +133,46 @@ class Player(commands.Cog):
         if ctx.author.voice.channel.id != ctx.voice_client.channel.id:
             return await ctx.send("Eu não estou tocando nenhuma música.")
 
-        poll = discord.Embed(title=f"Votar para skipar a música - {ctx.author.name}#{ctx.author.discriminator}", description="**80% of the voice channel must vote to skip for it to pass.**", colour=discord.Colour.blue())
-        poll.add_field(name="Skip", value=":white_check_mark:")
-        poll.add_field(name="Stay", value=":no_entry_sign:")
-        poll.set_footer(text="Voting ends in 15 seconds.")
+        # poll = discord.Embed(title=f"Votar para skipar a música - {ctx.author.name}#{ctx.author.discriminator}", description="**80% of the voice channel must vote to skip for it to pass.**", colour=discord.Colour.blue())
+        # poll.add_field(name="Skip", value=":white_check_mark:")
+        # poll.add_field(name="Stay", value=":no_entry_sign:")
+        # poll.set_footer(text="Voting ends in 15 seconds.")
 
-        poll_msg = await ctx.send(embed=poll) # only returns temporary message, we need to get the cached message to get the reactions
-        poll_id = poll_msg.id
+        # poll_msg = await ctx.send(embed=poll) # only returns temporary message, we need to get the cached message to get the reactions
+        # poll_id = poll_msg.id
 
-        await poll_msg.add_reaction(u"\u2705") # yes
-        await poll_msg.add_reaction(u"\U0001F6AB") # no
+        # await poll_msg.add_reaction(u"\u2705") # yes
+        # await poll_msg.add_reaction(u"\U0001F6AB") # no
         
-        await asyncio.sleep(15) # 15 seconds to vote
+        # await asyncio.sleep(15) # 15 seconds to vote
 
-        poll_msg = await ctx.channel.fetch_message(poll_id)
+        # poll_msg = await ctx.channel.fetch_message(poll_id)
         
-        votes = {u"\u2705": 0, u"\U0001F6AB": 0}
-        reacted = []
+        # votes = {u"\u2705": 0, u"\U0001F6AB": 0}
+        # reacted = []
 
-        for reaction in poll_msg.reactions:
-            if reaction.emoji in [u"\u2705", u"\U0001F6AB"]:
-                async for user in reaction.users():
-                    if user.voice.channel.id == ctx.voice_client.channel.id and user.id not in reacted and not user.bot:
-                        votes[reaction.emoji] += 1
+        # for reaction in poll_msg.reactions:
+        #     if reaction.emoji in [u"\u2705", u"\U0001F6AB"]:
+        #         async for user in reaction.users():
+        #             if user.voice.channel.id == ctx.voice_client.channel.id and user.id not in reacted and not user.bot:
+        #                 votes[reaction.emoji] += 1
 
-                        reacted.append(user.id)
+        #                 reacted.append(user.id)
 
-        skip = False
+        skip = True
 
-        if votes[u"\u2705"] > 0:
-            if votes[u"\U0001F6AB"] == 0 or votes[u"\u2705"] / (votes[u"\u2705"] + votes[u"\U0001F6AB"]) > 0: # 80% or higher
-                skip = True
-                embed = discord.Embed(title="Skip Successful", description="***Voting to skip the current song was succesful, skipping now.***", colour=discord.Colour.green())
+        # if votes[u"\u2705"] > 0:
+        #     if votes[u"\U0001F6AB"] == 0 or votes[u"\u2705"] / (votes[u"\u2705"] + votes[u"\U0001F6AB"]) > 0: # 80% or higher
+        #         skip = True
+        #         embed = discord.Embed(title="Skip Successful", description="***Voting to skip the current song was succesful, skipping now.***", colour=discord.Colour.green())
 
-        if not skip:
-            embed = discord.Embed(title="Skip Failed", description="*Voting to skip the current song has failed.*\n\n**Voting failed, the vote requires at least 80% of the members to skip.**", colour=discord.Colour.red())
+        # if not skip:
+        #     embed = discord.Embed(title="Skip Failed", description="*Voting to skip the current song has failed.*\n\n**Voting failed, the vote requires at least 80% of the members to skip.**", colour=discord.Colour.red())
 
-        embed.set_footer(text="Voting has ended.")
+        # embed.set_footer(text="Voting has ended.")
 
-        await poll_msg.clear_reactions()
-        await poll_msg.edit(embed=embed)
+        # await poll_msg.clear_reactions()
+        # await poll_msg.edit(embed=embed)
 
         if skip:
             ctx.voice_client.stop()
@@ -181,21 +181,21 @@ class Player(commands.Cog):
     @commands.command()
     async def pause(self, ctx):
         if ctx.voice_client.is_paused():
-            return await ctx.send("I am already paused.")
+            return await ctx.send("Eu já estou pausado.")
 
         ctx.voice_client.pause()
-        await ctx.send("The current song has been paused.")
+        await ctx.send("A música atual está pausada.")
 
     @commands.command()
     async def resume(self, ctx):
         if ctx.voice_client is None:
-            return await ctx.send("I am not connected to a voice channel.")
+            return await ctx.send("Não estou conectado em um servidor.")
 
         if not ctx.voice_client.is_paused():
-            return await ctx.send("I am already playing a song.")
+            return await ctx.send("Eu já estou tocando uma música.")
         
         ctx.voice_client.resume()
-        await ctx.send("The current song has been resumed.")
+        await ctx.send("Continuando a música atual.")
 
 async def setup():
     await bot.wait_until_ready()
@@ -203,4 +203,4 @@ async def setup():
 
 bot.loop.create_task(setup())
 
-bot.run("ODk0OTEzNzA2MDI1MTYwNzE1.YVw7Vg.T0-P8R0lDmNLwWOtvk6Y89sJrdk")
+bot.run("Seu token do discord aqui")
