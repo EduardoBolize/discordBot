@@ -3,9 +3,11 @@ import os
 import youtube_dl
 import pafy
 import discord
-from discord.ext import commands
+from discord.ext import commands]
 
+print('TOKEN')
 TOKEN = os.environ.get('DISCORD_TOKEN')
+print(TOKEN)
 
 intents = discord.Intents.default()
 intents.members = True
@@ -15,6 +17,8 @@ bot = commands.Bot(command_prefix="/", intents=intents)
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} está pronto.")
+    print(TOKEN)
+
 
 class Player(commands.Cog):
     def __init__(self, bot):
@@ -207,4 +211,3 @@ async def setup():
 bot.loop.create_task(setup())
 
 bot.run(TOKEN)
-print(TOKEN)
