@@ -203,4 +203,4 @@ async def setup():
 
 bot.loop.create_task(setup())
 
-bot.run("Seu token do discord aqui")
+bot.run("ODk2NjIzNzEyMjM1ODQ3Njgw.YWJz5w.WBRBBoJFz4rorOvVuejamjJhqsY")
