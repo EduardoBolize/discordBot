@@ -1,8 +1,11 @@
 import asyncio
+import os
 import youtube_dl
 import pafy
 import discord
 from discord.ext import commands
+
+TOKEN = os.environ.get('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.members = True
