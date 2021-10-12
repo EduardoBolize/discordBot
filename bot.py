@@ -1,4 +1,3 @@
-import asyncio
 import os
 import youtube_dl
 import pafy
