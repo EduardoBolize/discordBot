@@ -3,7 +3,7 @@ import os
 import youtube_dl
 import pafy
 import discord
-from discord.ext import commands]
+from discord.ext import commands
 
 print('TOKEN')
 TOKEN = os.environ.get('DISCORD_TOKEN')
