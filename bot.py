@@ -5,9 +5,7 @@ import pafy
 import discord
 from discord.ext import commands
 
-print('TOKEN')
 TOKEN = os.environ.get('DISCORD_TOKEN')
-print(TOKEN)
 
 intents = discord.Intents.default()
 intents.members = True
@@ -17,7 +15,6 @@ bot = commands.Bot(command_prefix="/", intents=intents)
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} está pronto.")
-    print(TOKEN)
 
 
 class Player(commands.Cog):
